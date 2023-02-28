@@ -84,46 +84,46 @@ resource serverFarm 'Microsoft.Web/serverfarms@2022-03-01' = {
   }
 }
 
-resource function 'Microsoft.Web/sites@2020-06-01' = {
-  name: 'function-${suffix}'
-  location: location
-  kind: 'functionapp,linux'
-  properties: {
-    serverFarmId: serverFarm.id    
-    siteConfig: {      
-      appSettings: [
-        {
-          name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
-          value: appInsights.properties.InstrumentationKey
-        }
-        {
-          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
-          value: appInsights.properties.ConnectionString
-        }
-        {
-          name: 'AzureWebJobsStorage'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountDocument.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccountDocument.id, storageAccountDocument.apiVersion).keys[0].value}'
-        }
-        {
-          name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountDocument.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccountDocument.id, storageAccountDocument.apiVersion).keys[0].value}'
-        }      
-        {
-          name: 'WEBSITE_CONTENTSHARE'
-          value: 'processorapp092'
-        }
-        {
-          name: 'FUNCTIONS_EXTENSION_VERSION'
-          value: '~4'
-        }
-        {
-          name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'python'
-        }
-      ]
-      linuxFxVersion: 'PYTHON|3.8'
-    }
-  }
-}
+// resource function 'Microsoft.Web/sites@2020-06-01' = {
+//   name: 'function-${suffix}'
+//   location: location
+//   kind: 'functionapp,linux'
+//   properties: {
+//     serverFarmId: serverFarm.id    
+//     siteConfig: {      
+//       appSettings: [
+//         {
+//           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
+//           value: appInsights.properties.InstrumentationKey
+//         }
+//         {
+//           name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+//           value: appInsights.properties.ConnectionString
+//         }
+//         {
+//           name: 'AzureWebJobsStorage'
+//           value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountDocument.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccountDocument.id, storageAccountDocument.apiVersion).keys[0].value}'
+//         }
+//         {
+//           name: 'WEBSITE_CONTENTAZUREFILECONNECTIONSTRING'
+//           value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountDocument.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(storageAccountDocument.id, storageAccountDocument.apiVersion).keys[0].value}'
+//         }      
+//         {
+//           name: 'WEBSITE_CONTENTSHARE'
+//           value: 'processorapp092'
+//         }
+//         {
+//           name: 'FUNCTIONS_EXTENSION_VERSION'
+//           value: '~4'
+//         }
+//         {
+//           name: 'FUNCTIONS_WORKER_RUNTIME'
+//           value: 'python'
+//         }
+//       ]
+//       linuxFxVersion: 'PYTHON|3.8'
+//     }
+//   }
+// }
 
 // End Azure function
