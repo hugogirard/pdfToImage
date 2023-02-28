@@ -72,6 +72,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
   name: 'asp-${suffix}'
+  kind: 'linux'
   location: location
   sku: {
     tier: 'Dynamic'
