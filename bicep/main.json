@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.9.1.41621",
-      "templateHash": "12206227224306834578"
+      "templateHash": "9142723332650707616"
     }
   },
   "parameters": {
@@ -93,12 +93,17 @@
     },
     {
       "type": "Microsoft.Web/serverfarms",
-      "apiVersion": "2020-06-01",
+      "apiVersion": "2022-03-01",
       "name": "[format('asp-{0}', parameters('suffix'))]",
       "location": "[variables('location')]",
       "sku": {
+        "name": "Y1",
         "tier": "Dynamic",
-        "name": "Y1"
+        "size": "Y1",
+        "family": "Y"
+      },
+      "properties": {
+        "reserved": true
       }
     },
     {
