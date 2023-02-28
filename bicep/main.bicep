@@ -70,16 +70,17 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 // Create the Azure function
 
-resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
+resource serverFarm 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: 'asp-${suffix}'
-  kind: 'linux'
   location: location
+  sku: {
+    name: 'Y1'
+    tier: 'Dynamic'
+    size: 'Y1'
+    family: 'Y'
+  }
   properties: {
     reserved: true
-  }
-  sku: {
-    tier: 'Dynamic'
-    name: 'Y1'
   }
 }
 
