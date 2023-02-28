@@ -74,6 +74,9 @@ resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
   name: 'asp-${suffix}'
   kind: 'linux'
   location: location
+  properties: {
+    reserved: true
+  }
   sku: {
     tier: 'Dynamic'
     name: 'Y1'
